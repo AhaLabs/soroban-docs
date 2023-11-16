@@ -97,10 +97,10 @@ import { Contract, networks } from 'hello-soroban-client';
 
 const greeter = new Contract({
   ...networks.testnet,
-  rpcUrl: 'https://soroban-testnet.stellar.org', // from https://soroban.stellar.org/docs/reference/rpc#public-rpc-providers
+  rpcUrl: "https://soroban-testnet.stellar.org", // from https://soroban.stellar.org/docs/reference/rpc#public-rpc-providers
 });
 
-const greeting = await greeter.hello({ to: 'Soroban' });
+const greetingTx = await greeter.hello({ to: "Soroban" });
  ---
 ```
 
@@ -108,7 +108,7 @@ Then the greeting is displayed in the first `<h1>` tag:
 
 ```typescript title="src/pages/index.astro"
 <h1>
-  <span class="text-gradient">{greeting.join(" ")}</span>
+  <span class="text-gradient">{greetingTx.result.join(' ')}</span>
 </h1>
 ```
 
@@ -133,7 +133,7 @@ This is part of Astro's philosophy: the frontend should ship with as few assets 
 
 When using the development server with `npm run dev`, it runs the frontmatter code on the server, and injects the resulting values into the page on the client.
 
-In this case, our `greeter.hello({ to: 'Soroban' });` method is making an RPC call on the server, and the response from that call is being injected onto our index page where we put `{greeting.join(' ')}`. For information about RPC calls, checkout out the [RPC](../reference/rpc.mdx) reference page.
+In this case, our `greeter.hello({ to: 'Soroban' });` method is making an RPC call on the server, and the response from that call is being injected onto our index page where we put `{greetingTx.result.join(' ')}`. For information about RPC calls, checkout out the [RPC](../reference/rpc.mdx) reference page.
 
 You can try building to see this more dramatically:
 
